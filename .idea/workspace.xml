@@ -2,17 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b1fa1d-3d2d-42aa-9c43-ce2461a9a333" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/dao/CategoryDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dao/CompanyDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dao/CouponDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dao/CustomerCouponDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/dao/CustomerDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/CategoryModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/CompanyModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/CouponModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/CustomerModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/dao/BaseDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/facade/AdminFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/facade/ClientFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/facade/CompanyFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/facade/CustomerFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/service/ConnectionPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/service/IllegalSingletonInitializationException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/CompanyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CompanyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/CouponDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CouponDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/CustomerCouponDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CustomerCouponDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/dao/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/service/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/service/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +44,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -47,17 +56,18 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="test" />
+      <recent name="main.service" />
+      <recent name="main.controller" />
       <recent name="main.model" />
       <recent name="main.dao" />
-      <recent name="main" />
-      <recent name="program" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Application" />
       <module name="CouponSystem" />
@@ -65,8 +75,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.Test" />
+      <module name="CouponSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
@@ -80,7 +104,11 @@
       <option name="presentableId" value="Default" />
       <updated>1683131273291</updated>
       <workItem from="1683131486945" duration="6034000" />
-      <workItem from="1683293602195" duration="3722000" />
+      <workItem from="1683293602195" duration="5054000" />
+      <workItem from="1683550656049" duration="3682000" />
+      <workItem from="1683735102772" duration="2787000" />
+      <workItem from="1683747421174" duration="5000" />
+      <workItem from="1683980472634" duration="4591000" />
     </task>
     <servers />
   </component>

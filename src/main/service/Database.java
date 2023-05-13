@@ -1,67 +1,75 @@
 package main.service;
 
 import java.sql.*;
-import java.util.HashMap;
+import java.util.*;
 
 public class Database {
-    private Connection connection;
+    private Connection connection = null;
+    private String host;
+    private String user;
+    private String password;
+    private String dbName;
 
-    // Constructor to create a new database connection
     public Database(String host, String user, String password, String dbName) {
+        this.host = host;
+        this.user = user;
+        this.password = password;
+        this.dbName = dbName;
+        connectAndInitializeDatabase();
+    }
+
+    private void connectAndInitializeDatabase() {
         try {
-            String url = "jdbc:mysql://" + host + "/";
-            connection = DriverManager.getConnection(url, user, password);
-            createDatabaseIfNotExists(dbName);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://" + host + ":3306?useSSL=false", user, password);
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbName);
             connection.setCatalog(dbName);
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Method to create a new database if it doesn't exist
-    private void createDatabaseIfNotExists(String dbName) {
-        try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("CREATE DATABASE IF NOT EXISTS `" + dbName + "`");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Method to execute a query that returns a HashMap
-    public HashMap<String, String> select(String sql) {
-        HashMap<String, String> result = new HashMap<>();
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(sql);
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            while (resultSet.next()) {
-                for (int i = 1; i <= columnCount; i++) {
-                    String key = metaData.getColumnName(i);
-                    String value = resultSet.getString(i);
-                    result.put(key, value);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    // Method to execute a query that performs an update
-    public void query(String sql) {
-        try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Method to close the database connection
-    public void close() {
+    public List<Map<String, Object>> select(String query) {
         try {
-            connection.close();
-        } catch (SQLException e) {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            List<Map<String, Object>> resultList = new ArrayList<>();
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            while(rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                    row.put(rsmd.getColumnName(i), rs.getObject(i));
+                }
+                resultList.add(row);
+            }
+
+            return resultList;
+        }
+        catch (SQLException e){
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void query(String query) {
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
