@@ -2,7 +2,7 @@ package main.facade;
 
 import main.dao.*;
 
-abstract class ClientFacade {
+public abstract class ClientFacade {
     protected boolean _logged = false;
 
     protected CompanyDAO _company;

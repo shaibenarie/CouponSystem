@@ -20,7 +20,7 @@ public class CustomerFacade extends ClientFacade {
     }
 
     @Override
-    public boolean login(String email, String password) {
+    public boolean login( String email, String password) {
         List<CustomerModel> customers = _customer.getByEmail(email);
 
         for(CustomerModel customer : customers){
@@ -32,6 +32,15 @@ public class CustomerFacade extends ClientFacade {
         }
 
         return false;
+    }
+
+    public boolean register(String firstName, String lastName,String email, String password) {
+        List<CustomerModel> customers = _customer.getByEmail(email);
+
+        if (customers.size() > 0) return false;
+
+        _customer.create(firstName, lastName, email, password);
+        return login(email, password);
     }
 
     public void purchaseCoupon(CouponModel data) throws IllegalAccessException {

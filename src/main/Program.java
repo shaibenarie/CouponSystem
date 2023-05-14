@@ -5,8 +5,11 @@ import main.facade.AdminFacade;
 import main.facade.CompanyFacade;
 import main.facade.CustomerFacade;
 import main.service.Database;
+import main.service.TaskRunner;
+import main.service.WorkerService;
 
 import java.util.LinkedList;
+import java.util.function.Function;
 
 public class Program {
     LinkedList<BaseDAO> _connectors = new LinkedList<>();
@@ -23,6 +26,7 @@ public class Program {
     public void Start(){
         initializeDatabase();
         initializeFacades();
+        initializeWorkers();
     }
 
     private void initializeDatabase(){
@@ -39,5 +43,26 @@ public class Program {
         admin = new AdminFacade(_company, _customer, _coupon, _customerCoupon);
         company = new CompanyFacade(_company, _customer, _coupon, _customerCoupon);
         customer = new CustomerFacade(_company, _customer, _coupon, _customerCoupon);
+    }
+
+    private void initializeWorkers() {
+        Function<Void, Void> task = parameter -> {
+            _coupon.cleanExpired();
+            System.out.println("Cleaning coupons...");
+            return null;
+        };
+
+        int intervalInHours = 24; // Run the task every 24 hours
+        WorkerService workerService = new WorkerService(new TaskRunner(task), intervalInHours);
+
+        // Keep the main thread alive for demonstration purposes
+        try {
+            Thread.sleep(5000); // Sleep for 5 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Stop the worker service (optional)
+        workerService.stop();
     }
 }

@@ -23,10 +23,6 @@ public class CompanyDAO extends BaseDAO {
         _database.query("INSERT INTO companies (`name`, `email`, `password`) VALUES ('"+name+"', '"+email+"', '"+password+"')");
     }
 
-    public void updateName(int id, String name){
-        _database.query("UPDATE companies SET name = '" + name + "' WHERE id = " + id);
-    }
-
     public void updateEmail(int id, String email){
         _database.query("UPDATE companies SET email = '" + email + "' WHERE id = " + id);
     }

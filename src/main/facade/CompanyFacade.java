@@ -35,6 +35,15 @@ public class CompanyFacade extends ClientFacade {
         return false;
     }
 
+    public boolean register(String name, String email, String password) {
+        if (_company.getByEmail(email).size() > 0 || _company.getByName(name).size() > 0){
+            return false;
+        }
+
+        _company.create(name, email, password);
+        return login(email, password);
+    }
+
     public void addCoupon(CouponModel data) throws IllegalAccessException {
         if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
 

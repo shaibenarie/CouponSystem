@@ -36,6 +36,11 @@ public class CouponDAO extends BaseDAO {
         return list.get(0);
     }
 
+    public List<CouponModel> getAll(){
+        String q = "SELECT * FROM coupons";
+        return parse(_database.select(q));
+    }
+
     public List<CouponModel> getByCompanyId(int id){
         String q = "SELECT * FROM coupons WHERE company_id = " + id;
         return parse(_database.select(q));
@@ -104,6 +109,21 @@ public class CouponDAO extends BaseDAO {
     public void delete(int id){
         String q = "DELETE FROM coupons WHERE id = " +id;
         _database.query(q);
+    }
+
+    public void deleteByCompanyId(int companyId){
+        String q = "DELETE FROM coupons WHERE company_id = " +companyId;
+        _database.query(q);
+    }
+
+    public void cleanExpired(){
+        List<CouponModel> _coupons = getAll();
+
+        for (CouponModel coupon : _coupons){
+            if (coupon.isExpired()){
+                delete(coupon.id);
+            }
+        }
     }
 
 

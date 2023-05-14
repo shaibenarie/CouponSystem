@@ -5,8 +5,11 @@ import main.dao.CouponDAO;
 import main.dao.CustomerCouponDAO;
 import main.dao.CustomerDAO;
 import main.model.CompanyModel;
+import main.model.CouponModel;
+import main.model.CustomerCouponModel;
 import main.model.CustomerModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,7 +39,6 @@ public class AdminFacade extends ClientFacade {
         if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
 
         _company.updateEmail(data.id, data.email);
-        _company.updateName(data.id, data.name);
         _company.updatePassword(data.id, data.password);
     }
 
@@ -44,6 +46,7 @@ public class AdminFacade extends ClientFacade {
         if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
 
         _company.delete(id);
+        _coupon.deleteByCompanyId(id);
     }
 
     public List<CompanyModel> getCompanies() throws IllegalAccessException {
@@ -73,10 +76,29 @@ public class AdminFacade extends ClientFacade {
         _customer.updatePassword(data.id, data.password);
     }
 
+    public List<CouponModel> getCustomerCoupons(int customerId) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
+        List<CouponModel> all = new ArrayList<>();
+
+        List<CustomerCouponModel> coupons = _customerCoupon.getByCustomerId(customerId);
+        for (CustomerCouponModel coupon : coupons){
+            all.add(_coupon.getById(coupon.couponId));
+        }
+
+        return all;
+    }
+
     public void deleteCustomer(int id) throws IllegalAccessException {
         if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
 
         _customer.delete(id);
+
+        // delete coupons associated with customer
+        List<CouponModel> list = getCustomerCoupons(id);
+        for(CouponModel coupon : list){
+            _coupon.delete(coupon.id);
+        }
     }
 
     public List<CustomerModel> getCustomers() throws IllegalAccessException {
