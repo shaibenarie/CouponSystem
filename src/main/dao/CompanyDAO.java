@@ -9,10 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class CompanyDAO extends BaseDAO {
-    private Database _database;
+
+    public CompanyDAO(Database db) {
+        super(db);
+    }
 
     public void createTable(){
-        String q = "CREATE TABLE IF NOT EXISTS `coupon-system`.`companies` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , `email` VARCHAR(1000) NOT NULL , `password` VARCHAR(32) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        String q = "CREATE TABLE IF NOT EXISTS `companies` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , `email` VARCHAR(1000) NOT NULL , `password` VARCHAR(32) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         _database.query(q);
     }
 
@@ -43,26 +46,24 @@ public class CompanyDAO extends BaseDAO {
         return list.get(0);
     }
 
-    public CompanyModel getByName(String name){
+    public List<CompanyModel> getByName(String name){
         String q = "SELECT * FROM companies WHERE name = '"+name+"'";
-        List<CompanyModel> list = parse(_database.select(q));
-
-        if (list.size() == 0){
-            return null;
-        }
-
-        return list.get(0);
+        return parse(_database.select(q));
     }
 
-    public CompanyModel getByEmail(String email){
+    public List<CompanyModel> getAll(){
+        String q = "SELECT * FROM companies";
+        return parse(_database.select(q));
+    }
+
+    public List<CompanyModel> getByEmail(String email){
         String q = "SELECT * FROM companies WHERE email = '"+email+"'";
-        List<CompanyModel> list = parse(_database.select(q));
+        return parse(_database.select(q));
+    }
 
-        if (list.size() == 0){
-            return null;
-        }
-
-        return list.get(0);
+    public void delete(int id) {
+        String q = "DELETE FROM companies WHERE id = " + id;
+        _database.query(q);
     }
 
     /**
@@ -79,5 +80,6 @@ public class CompanyDAO extends BaseDAO {
 
         return list;
     }
+
 
 }

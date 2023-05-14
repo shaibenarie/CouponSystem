@@ -12,8 +12,12 @@ import java.util.Map;
 public class CategoryDAO extends BaseDAO {
 
 
+    public CategoryDAO(Database db) {
+        super(db);
+    }
+
     public void createTable(){
-        String q = "CREATE TABLE IF NOT EXIST `coupon-system`.`categories` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        String q = "CREATE TABLE IF NOT EXISTS `categories` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         _database.query(q);
     }
 

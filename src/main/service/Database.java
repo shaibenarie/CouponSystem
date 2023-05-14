@@ -20,10 +20,10 @@ public class Database {
 
     private void connectAndInitializeDatabase() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + host + ":3306?useSSL=false", user, password);
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbName);
+            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS `" + dbName + "`");
             connection.setCatalog(dbName);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
