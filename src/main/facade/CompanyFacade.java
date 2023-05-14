@@ -35,11 +35,15 @@ public class CompanyFacade extends ClientFacade {
         return false;
     }
 
-    public void addCoupon(CouponModel data){
+    public void addCoupon(CouponModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _coupon.create(data.companyId, data.categoryId, data.title, data.description, data.dateStart, data.dateEnd, data.amount, data.price, data.image);
     }
 
-    public void updateCoupon(CouponModel data){
+    public void updateCoupon(CouponModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _coupon.updateCompanyId(data.id, data.companyId);
         _coupon.updateCategoryId(data.id, data.categoryId);
         _coupon.updateTitle(data.id, data.title);
@@ -51,23 +55,33 @@ public class CompanyFacade extends ClientFacade {
         _coupon.updateImage(data.id, data.image);
     }
 
-    public void deleteCoupon(int id){
+    public void deleteCoupon(int id) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _coupon.delete(id);
     }
 
-    public List<CouponModel> getCompanyCoupons(){
+    public List<CouponModel> getCompanyCoupons() throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _coupon.getByCompanyId(_data.id);
     }
 
-    public List<CouponModel> getCompanyCoupons(CategoryModel data){
+    public List<CouponModel> getCompanyCoupons(CategoryModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _coupon.getByCategoryId(data.id);
     }
 
-    public List<CouponModel> getCompanyCoupons(double maxPrice){
+    public List<CouponModel> getCompanyCoupons(double maxPrice) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _coupon.getByPriceLowerThan(maxPrice);
     }
 
-    public CompanyModel getCompanyDetails(){
+    public CompanyModel getCompanyDetails() throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _data;
     }
 }

@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2b1fa1d-3d2d-42aa-9c43-ce2461a9a333" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/facade/exceptions/IllegalAccessException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/BaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/BaseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CategoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/CompanyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CompanyDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/CouponDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CouponDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/CustomerCouponDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CustomerCouponDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/dao/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/dao/CustomerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/facade/AdminFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/facade/AdminFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/facade/ClientFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/facade/ClientFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/facade/CompanyFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/facade/CompanyFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/facade/CustomerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/facade/CustomerFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/service/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/service/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +109,7 @@
       <workItem from="1683747421174" duration="5000" />
       <workItem from="1683980472634" duration="7060000" />
       <workItem from="1684000924918" duration="1918000" />
-      <workItem from="1684058171806" duration="3004000" />
+      <workItem from="1684058171806" duration="3427000" />
     </task>
     <servers />
   </component>

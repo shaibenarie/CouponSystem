@@ -34,11 +34,15 @@ public class CustomerFacade extends ClientFacade {
         return false;
     }
 
-    public void purchaseCoupon(CouponModel data){
+    public void purchaseCoupon(CouponModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _coupon.create(data.companyId, data.categoryId, data.title, data.description, data.dateStart, data.dateEnd, data.amount, data.price, data.image);
     }
 
-    public List<CouponModel> getCustomerCoupons(){
+    public List<CouponModel> getCustomerCoupons() throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         List<CouponModel> all = new ArrayList<>();
 
         List<CustomerCouponModel> coupons = _customerCoupon.getByCustomerId(_data.id);
@@ -49,7 +53,9 @@ public class CustomerFacade extends ClientFacade {
         return all;
     }
 
-    public List<CouponModel> getCustomerCoupons(CategoryModel data){
+    public List<CouponModel> getCustomerCoupons(CategoryModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         List<CouponModel> response = new ArrayList<>();
         List<CouponModel> coupons = getCustomerCoupons();
         for (CouponModel coupon : coupons){
@@ -59,7 +65,9 @@ public class CustomerFacade extends ClientFacade {
         return response;
     }
 
-    public List<CouponModel> getCustomerCoupons(double maxPrice){
+    public List<CouponModel> getCustomerCoupons(double maxPrice) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         List<CouponModel> response = new ArrayList<>();
         List<CouponModel> coupons = getCustomerCoupons();
         for (CouponModel coupon : coupons){
@@ -69,7 +77,9 @@ public class CustomerFacade extends ClientFacade {
         return response;
     }
 
-    public CustomerModel getCustomerDetails(){
+    public CustomerModel getCustomerDetails() throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _data;
     }
 }

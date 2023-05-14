@@ -3,9 +3,7 @@ package main.dao;
 import main.model.CategoryModel;
 import main.service.Database;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

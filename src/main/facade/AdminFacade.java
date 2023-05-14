@@ -26,47 +26,68 @@ public class AdminFacade extends ClientFacade {
         return _logged;
     }
 
-    public void addCompany(CompanyModel data){
+    public void addCompany(CompanyModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _company.create(data.name, data.email, data.password);
     }
-    public void updateCompany(CompanyModel data){
+
+    public void updateCompany(CompanyModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _company.updateEmail(data.id, data.email);
         _company.updateName(data.id, data.name);
         _company.updatePassword(data.id, data.password);
     }
 
-    public void deleteCompany(int id){
+    public void deleteCompany(int id) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _company.delete(id);
     }
 
-    public List<CompanyModel> getCompanies(){
+    public List<CompanyModel> getCompanies() throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _company.getAll();
     }
 
-    public CompanyModel getCompany(int id){
+    public CompanyModel getCompany(int id) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _company.getById(id);
     }
 
-    public void addCustomer(CustomerModel data){
+    public void addCustomer(CustomerModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _customer.create(data.firstName, data.lastName, data.email, data.password);
     }
 
-    public void updateCustomer(CustomerModel data){
+    public void updateCustomer(CustomerModel data) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _customer.updateFirstName(data.id, data.firstName);
         _customer.updateLastName(data.id, data.lastName);
         _customer.updateEmail(data.id, data.email);
         _customer.updatePassword(data.id, data.password);
     }
 
-    public void deleteCustomer(int id){
+    public void deleteCustomer(int id) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         _customer.delete(id);
     }
 
-    public List<CustomerModel> getCustomers(){
+    public List<CustomerModel> getCustomers() throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _customer.getAll();
     }
 
-    public CustomerModel getCustomer(int id){
+    public CustomerModel getCustomer(int id) throws IllegalAccessException {
+        if (!_logged) throw new IllegalAccessException("Cannot perform operation since you are not logged!");
+
         return _customer.getById(id);
     }
 

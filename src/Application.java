@@ -9,5 +9,7 @@ public class Application {
     public static void main(String[] args) {
         Program program = new Program();
         program.Start();
+
+        // here you can test everything
     }
 }
